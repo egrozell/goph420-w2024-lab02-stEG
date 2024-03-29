@@ -20,8 +20,19 @@ def root_newton_raphson(x0, f, dfdx):
     TypeError: if f is not callable
     TypeError: if dfdx is not callable
     """
+    Ea = 1.0e-7
+    maxit = 30
+    eps_a = np.array([])
 
-    pass
+    for i in range(maxit):
+        x1 = x0 - f(x0)/dfdx(x0)
+        ea = abs((x1-x0)/x1)
+        eps_a = np.append(eps_a, ea)
+        if ea < Ea:
+            break
+        x0 = x1
+
+    return x0, int(x0), eps_a
 
 
 def root_secant_modified(x0, dx, f):
@@ -44,4 +55,16 @@ def root_secant_modified(x0, dx, f):
     TypeError: if f is not callable
     """
 
-    pass
+    Ea = 1.0e-7
+    maxit = 30
+    eps_a = np.array([])
+
+    for i in range(maxit):
+        x1 = x0 - f(x0)*dx/(f(x0+dx)-f(x0))
+        ea = abs((x1-x0)/x1)
+        eps_a = np.append(eps_a, ea)
+        if ea < Ea:
+            break
+        x0 = x1
+
+    return x0, int(x0), eps_a
