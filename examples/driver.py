@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.plot as plt
-from goph420_lab02.root_finder import (root_secant_modified,
-                                       root_newton_raphson)
+from goph420_lab02.root_finder import root_newton_raphson
 
 def main():
 
