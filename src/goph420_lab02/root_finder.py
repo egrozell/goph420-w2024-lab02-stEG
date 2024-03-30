@@ -23,16 +23,18 @@ def root_newton_raphson(x0, f, dfdx):
     Ea = 1.0e-7
     maxit = 30
     eps_a = np.array([])
+    it = 0
 
     for i in range(maxit):
         x1 = x0 - f(x0)/dfdx(x0)
         ea = abs((x1-x0)/x1)
         eps_a = np.append(eps_a, ea)
+        it += 1
         if ea < Ea:
             break
         x0 = x1
 
-    return x0, int(x0), eps_a
+    return x0, it, eps_a
 
 
 def root_secant_modified(x0, dx, f):
@@ -58,13 +60,15 @@ def root_secant_modified(x0, dx, f):
     Ea = 1.0e-7
     maxit = 30
     eps_a = np.array([])
+    it = 0
 
     for i in range(maxit):
         x1 = x0 - f(x0)*dx/(f(x0+dx)-f(x0))
         ea = abs((x1-x0)/x1)
         eps_a = np.append(eps_a, ea)
+        it += 1
         if ea < Ea:
             break
         x0 = x1
 
-    return x0, int(x0), eps_a
+    return x0, it, eps_a
