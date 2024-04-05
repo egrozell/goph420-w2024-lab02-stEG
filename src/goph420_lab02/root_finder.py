@@ -25,18 +25,14 @@ def root_newton_raphson(x0, f, dfdx):
     eps_a = np.array([])
     it = 0
 
-    # print(f"initial {x0}")
     for i in range(maxit):
         x1 = x0 - f(x0)/dfdx(x0)
-        # print(f"x1: {x1}")
         ea = abs((x1-x0)/x1)
         eps_a = np.append(eps_a, ea)
         it += 1
         if ea < Ea:
-            # print("break")
             break
         x0 = x1
-    # print(f"final {x0}")
 
     return x0, it, eps_a
 
