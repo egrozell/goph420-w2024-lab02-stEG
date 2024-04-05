@@ -33,6 +33,7 @@ def root_newton_raphson(x0, f, dfdx):
         if ea < Ea:
             break
         x0 = x1
+    # print(x0)
 
     return x0, it, eps_a
 
