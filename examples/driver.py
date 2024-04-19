@@ -44,6 +44,7 @@ def main():
                     + (rho2 / rho1) / (np.sqrt(undr_rt - _zeta ** 2))))
 
         if x0 > zeta_max:
+            print("second intitial guess method used")
             x0 = zeta_max - 1e-5
 
         while x0 < zeta_max:  # iterating over the modes to get to zeta max
@@ -66,8 +67,9 @@ def main():
         wvl.append(wvl_mode)
         zeta.append(zeta_mode)
         freq_indx.append(freq_mode)
+    print(len(freq_indx[-1]))
 
-    plt.figure(figsize=(10, 30))
+    plt.figure(figsize=(12, 26))
 
     # plot frequency vs love wave velocity
     figplot(1, 21, freq_indx, cl, 'Frequency [Hz]', 'Love wave velocity [m/s]',
@@ -76,10 +78,10 @@ def main():
     figplot(2, 11, freq_indx, wvl,  'Frequency [Hz]', 'Wavelength [m]',
             'Figure 2: Wavelength as a Function of Frequency')
     # plot frequency vs zeta
-    figplot(3, 11, freq_indx, wvl,   'Frequency [Hz]', 'Zeta',
+    figplot(3, 11, freq_indx, zeta,   'Frequency [Hz]', 'Zeta',
             'Figure 3: Zeta as a Function of Frequency')
 
-    plt.savefig("figures/mode")
+    plt.savefig("figures/love_wave_propagation")
 
 
 def figplot(fignum, rng, x, y, x_lbl, y_lbl, title):
